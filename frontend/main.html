@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>База автомобилей ГАИ</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script defer src="js/bootstrap.bundle.min.js"></script>
+    <script defer src="js/main.js"></script>
+</head>
+
+<body>
+<div class="page">
+
+    <div class="container mt-4">
+
+        <div class="row justify-content-center mb-4">
+
+            <div class="top-menu-left col-6 col-lg-4">
+
+                <div class="control-buttons mb-2">
+                    <button type="button" class="button-add btn btn-secondary me-1 mb-2" data-bs-toggle="modal"
+                            data-bs-target="#add-modal">
+                        Добавить автомобиль
+                    </button>
+                    <div class="delete">
+                        <label class="form-check-label mb-2" id="delete-element-label" for="delete-element">
+                            Удаление по регистрационному номеру:
+                        </label>
+                        <div class="input-group">
+                            <input class="form-control delete-element" type="text" name="" id="delete-element"
+                                   placeholder="Регистрационный номер">
+                            <button type="submit" class="btn btn-secondary" id="delete-element-button" type="button">
+                                Удалить
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="top-menu-right col-6 col-lg-4">
+                <div class="editing mb-3">
+                    <div class="edit">
+                        <label class="form-check-label mb-2" id="edit-element-label" for="edit-element">
+                            Редактирование по регистрационному номеру:
+                        </label>
+                        <div class="input-group">
+                            <input class="form-control edit-element" type="text" name="" id="edit-element"
+                                   placeholder="Регистрационный номер">
+                            <button type="submit" class="btn btn-secondary" id="edit-element-button" type="button">
+                                Редактировать
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row mb-3">
+            <div class="live-filtering row form-group text-center col-4">
+                <input class="form-control search-registration-number" type="text" name=""
+                       id="search-brand"
+                       placeholder="Поиск по марке">
+            </div>
+            <div class="live-filtering row form-group text-center col-4 mx-2">
+                <input class="form-control search-registration-number" type="text" name=""
+                       id="search-color"
+                       placeholder="Поиск по цвету">
+            </div>
+            <div class="live-filtering row form-group text-center col-4">
+                <input class="form-control search-registration-number" type="text" name=""
+                       id="search-registration-number"
+                       placeholder="Поиск по регистрационному номеру">
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="content">
+
+                <div class="content-header">
+
+                    <div class="h1 text-center">База автомобилей ГАИ</div>
+
+                </div>
+
+                <div class="table-responsive">
+                    <table class="content-table table table-bordered mt-3">
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal modal-add" id="add-modal" aria-labelledby="add-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="content-modal">
+
+                    <div class="modal-header">
+                        <h1 class="modal-title" id="add-modal-label">Добавить автомобиль:</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="form-label">
+                                Регистрационный номер:
+                            </div>
+                            <input type="text" class="form-control" id="modal-input-registration-number">
+                            <div class="form-text text-muted">
+                                (Первая буква заглавная, длина > 6 и < 10 символов)
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-label">
+                                Бренд:
+                            </div>
+                            <input type="text" class="form-control" id="modal-input-brand">
+                            <div class="form-text text-muted">
+                                (Первая буква заглавная, длина < 30 символов)
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-label">
+                                Год выпуска:
+                            </div>
+                            <input type="number" class="form-control" id="modal-input-release-date">
+                            <div class="form-text text-muted">
+                                (Число > 1900 и < 2023)
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-label">
+                                Цвет:
+                            </div>
+                            <input type="text" class="form-control" id="modal-input-color">
+                            <div class="form-text text-muted">
+                                (Первая буква заглавная, длина < 30 символов)
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-label">
+                                ФИО владельца:
+                            </div>
+                            <input type="text" class="form-control" id="modal-input-owner-full-name">
+                            <div class="form-text text-muted">
+                                (Первая буква заглавная, длина < 30 символов)
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-label">
+                                Адрес владельца:
+                            </div>
+                            <input type="text" class="form-control" id="modal-input-owner-address">
+                            <div class="form-text text-muted">
+                                (Первая буква заглавная, длина < 30 символов)
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" id="modal-add-send">
+                                Добавить
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-edit" id="edit-modal" aria-labelledby="edit-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="content-modal">
+
+                    <div class="modal-header">
+                        <h1 class="modal-title" id="edit-modal-label">Изменить автомобиль:</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="form-label">
+                                Регистрационный номер:
+                            </div>
+                            <input type="text" class="form-control" id="modal-input-registration-number-edit">
+                            <div class="form-text text-muted">
+                                (Первая буква заглавная, длина > 6 и < 10 символов)
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-label">
+                                Бренд:
+                            </div>
+                            <input type="text" class="form-control" id="modal-input-brand-edit">
+                            <div class="form-text text-muted">
+                                (Первая буква заглавная, длина < 30 символов)
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-label">
+                                Год выпуска:
+                            </div>
+                            <input type="number" class="form-control" id="modal-input-release-date-edit">
+                            <div class="form-text text-muted">
+                                (Число > 1900 и < 2023)
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-label">
+                                Цвет:
+                            </div>
+                            <input type="text" class="form-control" id="modal-input-color-edit">
+                            <div class="form-text text-muted">
+                                (Первая буква заглавная, длина < 30 символов)
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-label">
+                                ФИО владельца:
+                            </div>
+                            <input type="text" class="form-control" id="modal-input-owner-full-name-edit">
+                            <div class="form-text text-muted">
+                                (Первая буква заглавная, длина < 30 символов)
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-label">
+                                Адрес владельца:
+                            </div>
+                            <input type="text" class="form-control" id="modal-input-owner-address-edit">
+                            <div class="form-text text-muted">
+                                (Первая буква заглавная, длина < 30 символов)
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" id="modal-edit-send">
+                                Добавить
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+</html>
